@@ -1,0 +1,208 @@
+/* Settings & Safe Reset Modal */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(10, 8, 32, 0.82);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  animation: fade-in 150ms ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 400px;
+  padding: var(--space-5);
+  background: var(--color-bg-room);
+  border: 3px solid var(--color-bg-room-edge);
+  box-shadow:
+    inset 0 0 0 2px var(--color-bg-deep),
+    0 8px 0 var(--color-pixel-shadow);
+  animation: modal-pop 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modal-pop {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-2);
+  border-bottom: 2px dashed var(--color-bg-room-edge);
+}
+
+.title {
+  font-family: var(--font-pixel);
+  font-size: 1.1rem;
+  color: var(--color-pixel-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.close-btn {
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  color: var(--color-text-dim);
+  background: var(--color-bg-deep);
+  border: 2px solid var(--color-bg-room-edge);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 80ms ease-out;
+}
+
+.close-btn:hover {
+  color: var(--color-pixel-yellow);
+  border-color: var(--color-pixel-yellow);
+}
+
+.close-btn:focus-visible {
+  outline: 2px dashed var(--color-pixel-yellow);
+  outline-offset: 2px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.section-title {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  color: var(--color-pixel-cream);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-deep);
+  border: 2px solid var(--color-bg-room-edge);
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+}
+
+.info-val {
+  color: var(--color-pixel-blue);
+  text-transform: capitalize;
+}
+
+/* Danger / Reset Zone */
+.danger-zone {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: rgba(42, 31, 90, 0.5);
+  border: 2px dashed var(--color-pixel-red);
+}
+
+.danger-header {
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+  color: var(--color-pixel-red);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.danger-text {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--color-pixel-cream);
+  opacity: 0.9;
+}
+
+.btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.keep-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-deep);
+  color: var(--color-pixel-cream);
+  border: 2px solid var(--color-bg-room-edge);
+  box-shadow: 0 3px 0 var(--color-pixel-shadow);
+  cursor: pointer;
+  transition: all 80ms ease-out;
+}
+
+.keep-btn:hover {
+  border-color: var(--color-pixel-cream);
+  transform: translateY(-1px);
+}
+
+.keep-btn:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.keep-btn:focus-visible {
+  outline: 2px dashed var(--color-pixel-cream);
+  outline-offset: 2px;
+}
+
+.reset-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-pixel-red);
+  color: var(--color-pixel-shadow);
+  border: 2px solid var(--color-pixel-shadow);
+  box-shadow: 0 3px 0 var(--color-pixel-shadow);
+  cursor: pointer;
+  transition: all 80ms ease-out;
+}
+
+.reset-btn:hover {
+  background: #ff7586;
+  transform: translateY(-1px);
+}
+
+.reset-btn:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.reset-btn:focus-visible {
+  outline: 2px dashed var(--color-pixel-red);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .modal {
+    animation: none !important;
+  }
+}

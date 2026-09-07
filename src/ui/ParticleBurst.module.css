@@ -1,0 +1,146 @@
+/*
+ * Pixel-art particles. All CSS-driven, no canvas, no JS animation loops.
+ *
+ * Each `.particle` is a tiny pixel block (3-5px) that animates outward
+ * with a hard-edge translation. Multiple particles with staggered delays
+ * form a small burst effect.
+ */
+
+.burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Variant-specific positioning: where particles originate. */
+.burst.v-crumbs .particle {
+  top: 60%;
+}
+.burst.v-sparkles .particle {
+  top: 50%;
+}
+.burst.v-bubbles .particle {
+  top: 60%;
+}
+.burst.v-zzz .particle {
+  top: 20%;
+  animation: particle-rise var(--dur, 1600ms) ease-out forwards;
+}
+.burst.v-hearts .particle {
+  top: 30%;
+}
+.burst.v-puffs .particle {
+  top: 60%;
+}
+
+.particle {
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  width: 4px;
+  height: 4px;
+  image-rendering: pixelated;
+  border-radius: 0;
+  opacity: 0;
+  animation: particle-pop var(--dur, 700ms) ease-out forwards;
+  animation-delay: var(--delay, 0ms);
+  /* hard pixel edge */
+  box-shadow:
+    -1px 0 0 rgba(0, 0, 0, 0.25),
+    1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Each variant tweaks the cluster shape. */
+.particle[data-variant='crumbs'] {
+  width: 3px;
+  height: 3px;
+}
+.particle[data-variant='sparkles'] {
+  width: 6px;
+  height: 6px;
+  background-image:
+    linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.7) 50%, transparent 55%),
+    linear-gradient(-45deg, transparent 45%, rgba(255, 255, 255, 0.7) 50%, transparent 55%);
+}
+.particle[data-variant='bubbles'] {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  background: transparent !important;
+}
+.particle[data-variant='hearts'] {
+  width: 7px;
+  height: 7px;
+  background: transparent !important;
+  position: relative;
+}
+.particle[data-variant='hearts']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  clip-path: polygon(50% 100%, 0 35%, 20% 0, 50% 25%, 80% 0, 100% 35%);
+}
+.particle[data-variant='zzz'] {
+  width: 8px;
+  height: 8px;
+  background: transparent !important;
+  color: var(--color-pixel-blue);
+}
+.particle[data-variant='zzz']::before {
+  content: 'Z';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  font-weight: bold;
+  color: var(--color-pixel-blue);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+}
+.particle[data-variant='puffs'] {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+@keyframes particle-pop {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.5) rotate(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x, 0px), var(--y, -40px))
+      scale(1)
+      rotate(var(--rot, 0deg));
+    opacity: 0;
+  }
+}
+
+@keyframes particle-rise {
+  0% {
+    transform: translate(-50%, 0) scale(0.5) rotate(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform:
+      translate(-50%, -100%)
+      translate(var(--x, 0px), calc(var(--y, -40px) * 1.4))
+      scale(1.1)
+      rotate(var(--rot, 0deg));
+    opacity: 0;
+  }
+}

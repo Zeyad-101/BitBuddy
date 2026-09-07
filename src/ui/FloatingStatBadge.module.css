@@ -1,0 +1,67 @@
+.floating-badge {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 25;
+  animation: badge-float-fade 1.05s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.badge-pill {
+  font-family: var(--font-pixel, monospace);
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: var(--color-bg-deep, #120e2e);
+  border: 2px solid var(--badge-color, var(--color-pixel-yellow, #ffd86b));
+  box-shadow:
+    0 3px 0 var(--color-pixel-shadow, #09061a),
+    0 0 12px rgba(0, 0, 0, 0.5);
+  padding: 3px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.badge-star {
+  color: var(--badge-color, var(--color-pixel-yellow, #ffd86b));
+  font-size: 0.65rem;
+}
+
+.badge-text {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+@keyframes badge-float-fade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 6px) scale(0.85);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -10px) scale(1.1);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(-50%, -22px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -48px) scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-badge {
+    animation: badge-fade-simple 1.05s ease forwards;
+  }
+  @keyframes badge-fade-simple {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+}

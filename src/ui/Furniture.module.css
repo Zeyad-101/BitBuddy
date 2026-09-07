@@ -1,0 +1,104 @@
+.furniture {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  shape-rendering: crisp-edges;
+  pointer-events: none;
+}
+
+
+.bed {
+  --cell-size: 10px;
+}
+
+.bowl {
+  --cell-size: 8px;
+}
+
+.toy {
+  --cell-size: 8px;
+}
+
+.window {
+  --cell-size: 9px;
+}
+
+.plant {
+  --cell-size: 9px;
+}
+
+.clock {
+  --cell-size: 6px;
+}
+
+.picture {
+  --cell-size: 8px;
+}
+
+.rug {
+  --cell-size: 8px;
+  z-index: 0;
+}
+
+.interactive-decor {
+  pointer-events: auto !important;
+  cursor: pointer;
+  transition: transform 0.15s ease-out, filter 0.15s ease-out;
+  outline: none;
+}
+
+.interactive-decor:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 6px rgba(255, 216, 107, 0.6));
+}
+
+.interactive-decor:focus-visible {
+  outline: 2px solid var(--color-pixel-yellow, #ffd86b);
+  border-radius: 4px;
+}
+
+.clock-ring {
+  animation: clock-shake 0.12s ease-in-out 8 alternate !important;
+}
+
+@keyframes clock-shake {
+  0% { transform: rotate(-10deg) scale(1.1); }
+  100% { transform: rotate(10deg) scale(1.1); }
+}
+
+.plant-wiggle {
+  animation: plant-sway 0.15s ease-in-out 4 alternate !important;
+}
+
+@keyframes plant-sway {
+  0% { transform: rotate(-8deg) scale(1.05); }
+  100% { transform: rotate(8deg) scale(1.05); }
+}
+
+.bed-fluff {
+  animation: bed-bounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+@keyframes bed-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.16, 0.85); }
+  100% { transform: scale(1); }
+}
+
+.bowl-ding {
+  animation: bowl-ring 0.35s ease-out !important;
+}
+
+@keyframes bowl-ring {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.22) rotate(-6deg); }
+  100% { transform: scale(1); }
+}
+
+.picture-tilt {
+  transform: rotate(-9deg) scale(1.06) !important;
+}
+

@@ -1,0 +1,46 @@
+:root {
+  /* Retro palette — limited, deep navy/purple game room */
+  --color-bg-deep: #0d0a26;
+  --color-bg-room: #1a1340;
+  --color-bg-room-edge: #2a1f5a;
+  --color-pixel-cream: #f4e8c1;
+  --color-pixel-pink: #ff7eb6;
+  --color-pixel-blue: #6ad1ff;
+  --color-pixel-green: #8be38b;
+  --color-pixel-yellow: #ffd86b;
+  --color-pixel-red: #ff5a6e;
+  --color-pixel-shadow: #0a0820;
+
+  --color-stat-hunger: #ff7eb6;
+  --color-stat-happiness: #ffd86b;
+  --color-stat-energy: #6ad1ff;
+  --color-stat-cleanliness: #8be38b;
+  --color-stat-health: #ff5a6e;
+
+  --color-text: #f4e8c1;
+  --color-text-dim: #b3a8d9;
+  --color-button: #2a1f5a;
+  --color-button-hover: #3a2e7a;
+  --color-button-text: #f4e8c1;
+
+  /* Sizing — small unit grid for pixel feel */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --radius-pixel: 0; /* sharp edges for retro look */
+  --radius-soft: 6px;
+
+  --font-pixel: 'Courier New', 'Consolas', ui-monospace, monospace;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --shadow-pixel: 0 4px 0 var(--color-pixel-shadow);
+  --shadow-pixel-press: 0 1px 0 var(--color-pixel-shadow);
+
+  --pet-size: clamp(160px, 50vw, 280px);
+  --pet-size-lg: clamp(220px, 40vw, 360px);
+}

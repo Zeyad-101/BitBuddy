@@ -1,0 +1,19 @@
+.action-btn {
+  min-width: 80px;
+  min-height: 56px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.action-btn[data-variant='feed'] { background: var(--color-stat-hunger); color: var(--color-pixel-shadow); }
+.action-btn[data-variant='play'] { background: var(--color-stat-happiness); color: var(--color-pixel-shadow); }
+.action-btn[data-variant='clean'] { background: var(--color-stat-cleanliness); color: var(--color-pixel-shadow); }
+.action-btn[data-variant='sleep'] { background: var(--color-stat-energy); color: var(--color-pixel-shadow); }
+
+.icon {
+  font-size: 1.1rem;
+  font-family: var(--font-pixel);
+}

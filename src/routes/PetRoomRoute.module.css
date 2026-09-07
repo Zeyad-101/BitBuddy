@@ -1,0 +1,202 @@
+.route {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3);
+  gap: var(--space-3);
+  background: var(--color-bg-deep);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-room);
+  border: 3px solid var(--color-bg-room-edge);
+  box-shadow: inset 0 0 0 2px var(--color-bg-deep);
+  flex-shrink: 0;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.header-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 2px 0 var(--color-pixel-shadow));
+  flex-shrink: 0;
+}
+
+.brand {
+  font-family: var(--font-pixel);
+  font-size: 0.95rem;
+  color: var(--color-pixel-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.tagline {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.settings-btn {
+  font-family: var(--font-pixel);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--color-pixel-cream);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-bg-room-edge);
+  background: var(--color-bg-deep);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 80ms ease-out;
+}
+
+.settings-btn:hover {
+  color: var(--color-pixel-yellow);
+  border-color: var(--color-pixel-yellow);
+}
+
+.settings-btn:focus-visible {
+  outline: 2px dashed var(--color-pixel-yellow);
+  outline-offset: 2px;
+}
+
+.diary-btn {
+  font-family: var(--font-pixel);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--color-pixel-yellow);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-pixel-yellow);
+  background: var(--color-bg-deep);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 80ms ease-out;
+}
+
+.diary-btn:hover {
+  background: var(--color-pixel-yellow);
+  color: var(--color-bg-deep);
+}
+
+.diary-btn:focus-visible {
+  outline: 2px dashed var(--color-pixel-yellow);
+  outline-offset: 2px;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 0;
+  position: relative;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-bg-room);
+  border: 3px solid var(--color-bg-room-edge);
+  box-shadow: inset 0 0 0 2px var(--color-bg-deep);
+  flex-shrink: 0;
+}
+
+.pulse-target {
+  position: relative;
+}
+
+.pulse-target::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--color-pixel-yellow);
+  pointer-events: none;
+  animation: pulse-ring 1s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 0.2; transform: scale(0.98); }
+  50%      { opacity: 1; transform: scale(1.02); }
+}
+
+.empty {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-4);
+  text-align: center;
+  background:
+    radial-gradient(ellipse at top, var(--color-bg-room-edge) 0%, var(--color-bg-deep) 70%);
+}
+
+.empty h1 {
+  font-size: 1.4rem;
+  color: var(--color-pixel-yellow);
+  text-transform: uppercase;
+}
+
+.empty p {
+  color: var(--color-text-dim);
+  max-width: 32ch;
+}
+
+.loading {
+  font-family: var(--font-pixel);
+  font-size: 0.9rem;
+  color: var(--color-pixel-yellow);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 720px) {
+  .route {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .tagline {
+    display: none;
+  }
+  .actions {
+    gap: var(--space-1);
+    padding: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-target::after {
+    animation: none !important;
+  }
+}

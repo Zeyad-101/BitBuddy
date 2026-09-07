@@ -1,0 +1,173 @@
+import type { SpriteSet } from './palette';
+import { validateSprites } from './palette';
+
+/**
+ * Dog — floppy ears, golden coat, four-legged stance, wagging tail.
+ *
+ * Palette:
+ *   . transparent
+ *   G golden body      #e8b76b
+ *   g golden shadow    #b88a40
+ *   D dark accent      #8b5a2b
+ *   e eye              #1a1340
+ *   n nose (black)     #0d0a26
+ *   t tongue pink      #ff7eb6
+ *   w white (belly)    #fff7e0
+ *   s sparkle          #ffd86b
+ */
+const dog: SpriteSet = {
+  labels: {
+    happy: 'tail wag, alert',
+    'well-cared-for': 'super excited, tongue out',
+    hungry: 'snout toward food, droopy',
+    sad: 'head down, ears flat',
+    tired: 'yawning, tongue out',
+    sleeping: 'curled up, paws out',
+    eating: 'munching at bowl',
+    playing: 'jumping with toy',
+  },
+  palette: {
+    '.': 'transparent',
+    G: '#e8b76b',
+    g: '#b88a40',
+    D: '#8b5a2b',
+    e: '#1a1340',
+    n: '#0d0a26',
+    t: '#ff7eb6',
+    w: '#fff7e0',
+    s: '#ffd86b',
+  },
+  frames: {
+    happy: [
+      '..............',
+      '..g..GG..GG..g',
+      '.gG..GG..GG..G',
+      '.GDDDD..DDDGG.',
+      '.GDwwD..DwwDG.',
+      '.GwGGGGGGGwG..',
+      '.GGGGGGGGGGGG.',
+      '.GGGGwGGGwGGG.',
+      '.GGGwGGGGwGGG.',
+      '.GGwGGGGGGwGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGG..GG..GG.',
+      '..GG....G..GG.',
+      '....tt.tt....t',
+    ],
+    'well-cared-for': [
+      '..............',
+      '..g..GG..GG..g',
+      '.gG..GG..GG..G',
+      '.GDDDD..DDDGG.',
+      '.GDwwD..DwwDG.',
+      '.GwGGGGGGGwG..',
+      '.GGGGGGGGGGGG.',
+      '.GGGwwwwwwGGG.',
+      '.GGGttGGttGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGG..GG..GG.',
+      '..GG....G..GG.',
+      '...tt.tt.tt.tt',
+    ],
+    hungry: [
+      '..............',
+      '..g..GG..GG..g',
+      '.gG..GG..GG..G',
+      '.GDDDD..DDDGG.',
+      '.GDwwD..DwwDG.',
+      '.GwGGwwwwGwG..',
+      '.GGGGGGGGGGGG.',
+      '.GGGnnGGGnnGGG',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGG..GG..GG.',
+      '..GG....G..GG.',
+      '....nn.nn.nn..',
+    ],
+    sad: [
+      '..............',
+      '.g.ggGG..GGggg',
+      '.gG.gGG..GG.Gg',
+      '.GDDDD..DDDGG.',
+      '.GDwwD..DwwDG.',
+      '.GwGGGGGGGwG..',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGwwwwwwGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '..GGG..GG..GG.',
+      '..GG......GG..',
+      '..............',
+    ],
+    tired: [
+      '..............',
+      '..g..GG..GG..g',
+      '.gG..GG..GG..G',
+      '.GDDDD..DDDGG.',
+      '.GDwwD..DwwDG.',
+      '.GwGGGGGGGwG..',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGtttGGGGG..',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGG..GG..GG.',
+      '..GG....G..GG.',
+      '....nn.nn....n',
+    ],
+    sleeping: [
+      '..............',
+      '..............',
+      '.g.ggGG..GGggg',
+      '.gG.gGG..GG.Gg',
+      '.GDDDD..DDDGG.',
+      '.GDwwwwwwwwDG.',
+      '.GGGGGGGGGGGG.',
+      '.GGwwGGGGwwGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '..GGG..GG..GG.',
+      '..GG......GG..',
+      '..............',
+    ],
+    eating: [
+      '..............',
+      '..g..GG..GG..g',
+      '.gG..GG..GG..G',
+      '.GDDDD..DDDGG.',
+      '.GDwwwwwwwDG..',
+      '.GwGGGGGGGGwG.',
+      '.GGGGGnnGGGGG.',
+      '.GGGGnnnnnGGG.',
+      '.GGGnnwwwnGG..',
+      '.GGGGGGGGGGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGG..GG..GG.',
+      '..GG....G..GG.',
+      '..............',
+    ],
+    playing: [
+      '..............',
+      '..g..GG..GG..g',
+      '.gG..GG..GG..G',
+      '.GDDDD..DDDGG.',
+      '.GDwwD..DwwDG.',
+      '.GwGGGGGGGwG..',
+      '.GGGGGGGGGGGG.',
+      '.GGGGttGGGGGG.',
+      '.GGGttGGttGGG.',
+      '.GGGGGGGGGGGG.',
+      '.GGGssGGssGGG.',
+      '.GGGG..GG..GG.',
+      '..GG....G..GG.',
+      '....tt.tt....t',
+    ],
+  },
+};
+
+validateSprites(dog);
+export default dog;

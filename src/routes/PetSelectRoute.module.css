@@ -1,0 +1,688 @@
+/* ==========================================================================
+   Character Selection Screen — Retro Arcade Handheld Presentation
+   ========================================================================== */
+
+.route {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 2vh, 20px) var(--space-3);
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 15%, #2c1b63 0%, #171138 55%, var(--color-bg-deep) 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Atmospheric drifting pixel stars */
+.stars-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 30px 40px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 70px 110px, rgba(255, 216, 107, 0.8), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 150px 60px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 220px 180px, rgba(106, 209, 255, 0.7), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 310px 90px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 380px 220px, rgba(255, 126, 182, 0.6), rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 450px 50px, #ffffff, rgba(0, 0, 0, 0));
+  background-size: 480px 320px;
+  animation: stars-drift 45s linear infinite;
+  opacity: 0.65;
+}
+
+@keyframes stars-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 480px 320px; }
+}
+
+/* Main game stage container */
+.stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.6vh, 16px);
+  margin: auto 0;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.step-pill {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-pixel-yellow);
+  background: rgba(26, 19, 64, 0.85);
+  border: 2px solid var(--color-bg-room-edge);
+  padding: 2px var(--space-3);
+  box-shadow: var(--shadow-pixel-press);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-star {
+  color: var(--color-pixel-pink);
+  font-size: 0.7rem;
+}
+
+.step-divider {
+  color: var(--color-bg-room-edge);
+}
+
+.step-label {
+  color: var(--color-pixel-cream);
+}
+
+.title {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.6rem, 4.2vw, 2.5rem);
+  color: var(--color-pixel-cream);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  text-shadow:
+    3px 3px 0 var(--color-pixel-shadow),
+    5px 5px 0 #120e2e;
+  margin: 1px 0 0;
+}
+
+.subtitle {
+  font-family: var(--font-pixel);
+  font-size: clamp(0.7rem, 2.2vw, 0.82rem);
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Central Companion Showcase
+   -------------------------------------------------------------------------- */
+.showcase {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-room);
+  border: 3px solid var(--color-bg-room-edge);
+  box-shadow:
+    inset 0 0 0 2px var(--color-bg-deep),
+    0 7px 0 var(--color-pixel-shadow);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  border-color: color-mix(in srgb, var(--pet-accent, #ffd86b) 35%, var(--color-bg-room-edge));
+  transition: border-color 0.2s ease-out;
+}
+
+/* Decorative pixel corner brackets */
+.corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  border-color: var(--pet-accent, var(--color-pixel-yellow));
+  transition: border-color 0.2s ease-out;
+}
+
+.corner-tl {
+  top: 4px;
+  left: 4px;
+  border-top: 3px solid;
+  border-left: 3px solid;
+}
+
+.corner-tr {
+  top: 4px;
+  right: 4px;
+  border-top: 3px solid;
+  border-right: 3px solid;
+}
+
+.corner-bl {
+  bottom: 4px;
+  left: 4px;
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+}
+
+.corner-br {
+  bottom: 4px;
+  right: 4px;
+  border-bottom: 3px solid;
+  border-right: 3px solid;
+}
+
+/* Ambient pixel sparkles */
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.sparkle-1 {
+  top: 14px;
+  left: 18px;
+  animation: sparkle-pulse 2.2s ease-in-out infinite;
+}
+
+.sparkle-2 {
+  top: 18px;
+  right: 22px;
+  animation: sparkle-pulse 2.8s ease-in-out 0.8s infinite;
+}
+
+.sparkle-3 {
+  bottom: 24px;
+  left: 28px;
+  animation: sparkle-pulse 2.5s ease-in-out 1.4s infinite;
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% {
+    transform: scale(0.8) rotate(0deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.25) rotate(12deg);
+    opacity: 1;
+  }
+}
+
+/* Spotlight Stage Platform */
+.stage-platform {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Radial spotlight beam behind character */
+.spotlight {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(340px, 80vw);
+  height: min(220px, 55vw);
+  background: radial-gradient(ellipse at center, var(--pet-accent, #ffd86b) 0%, transparent 68%);
+  opacity: 0.28;
+  pointer-events: none;
+  filter: blur(4px);
+  transition: background 0.25s ease-out;
+}
+
+/* Dominant Pet Character */
+.hero-pet {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 2px;
+  animation: hero-pop 0.2s ease-out;
+}
+
+@keyframes hero-pop {
+  0%   { transform: scale(0.95); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Multi-tiered arcade pedestal */
+.pedestal-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.pedestal-top {
+  width: min(230px, 62vw);
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-bg-room-edge) 0,
+    var(--color-bg-room-edge) 10px,
+    var(--color-bg-deep) 10px,
+    var(--color-bg-deep) 20px
+  );
+  border-top: 3px solid var(--pet-accent, var(--color-pixel-yellow));
+  border-bottom: 2px solid var(--color-pixel-shadow);
+  transition: border-color 0.2s ease-out;
+}
+
+.pedestal-base {
+  width: min(260px, 70vw);
+  height: 8px;
+  background: var(--color-bg-room-edge);
+  border-bottom: 3px solid var(--color-pixel-shadow);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.12);
+}
+
+.floor-shadow {
+  width: min(280px, 75vw);
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(10, 8, 32, 0.85) 0%, transparent 75%);
+  margin-top: 2px;
+}
+
+/* Companion Identity details */
+.companion-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding-top: var(--space-2);
+  border-top: 2px dashed var(--color-bg-room-edge);
+}
+
+.archetype-banner {
+  display: inline-block;
+}
+
+.archetype-text {
+  font-family: var(--font-pixel);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pet-accent, var(--color-pixel-pink));
+  background: rgba(13, 10, 38, 0.75);
+  border: 1px solid var(--pet-accent, var(--color-pixel-pink));
+  padding: 1px var(--space-3);
+  box-shadow: var(--shadow-pixel-press);
+  transition: color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin: 1px 0;
+}
+
+.motif-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  background: var(--color-bg-deep);
+  border: 2px solid var(--pet-accent, var(--color-pixel-yellow));
+  box-shadow: 0 2px 0 var(--color-pixel-shadow);
+  animation: motif-bob 3s ease-in-out infinite;
+  transition: border-color 0.2s ease-out;
+}
+
+@keyframes motif-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+.hero-name {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.3rem, 3.8vw, 1.8rem);
+  color: var(--color-pixel-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow:
+    2px 2px 0 var(--color-pixel-shadow),
+    4px 4px 0 #120e2e;
+  margin: 0;
+}
+
+.hero-desc {
+  font-size: clamp(0.8rem, 2.2vw, 0.88rem);
+  line-height: 1.4;
+  color: var(--color-pixel-cream);
+  max-width: 48ch;
+  opacity: 0.95;
+  margin: 0;
+  text-align: center;
+}
+
+/* Retro trait chips */
+.tags {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.tag {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px var(--space-2);
+  background: var(--color-bg-deep);
+  border: 2px solid var(--color-bg-room-edge);
+  color: var(--color-pixel-cream);
+  box-shadow: var(--shadow-pixel-press);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: border-color 0.15s ease;
+}
+
+.tag:hover {
+  border-color: var(--pet-accent, var(--color-pixel-yellow));
+}
+
+.tag-diamond {
+  color: var(--pet-accent, var(--color-pixel-yellow));
+  font-size: 0.6rem;
+  transition: color 0.2s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   Character-Select Roster
+   -------------------------------------------------------------------------- */
+.roster-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.roster-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roster-title {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+.selector-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.roster-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px var(--space-2) 6px;
+  background: var(--color-bg-room);
+  border: 3px solid var(--color-bg-room-edge);
+  box-shadow:
+    inset 0 0 0 1px var(--color-bg-deep),
+    0 4px 0 var(--color-pixel-shadow);
+  cursor: pointer;
+  transition:
+    transform 100ms ease-out,
+    border-color 100ms ease-out,
+    box-shadow 100ms ease-out,
+    background 100ms ease-out;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100px;
+}
+
+.roster-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--card-accent);
+  box-shadow:
+    inset 0 0 0 1px var(--color-bg-deep),
+    0 7px 0 var(--color-pixel-shadow);
+}
+
+.roster-card:focus-visible {
+  outline: 3px dashed var(--color-pixel-yellow);
+  outline-offset: 3px;
+}
+
+.roster-card[data-selected='true'] {
+  transform: translateY(-5px);
+  border-color: var(--card-accent);
+  background: linear-gradient(180deg, #2c1f60 0%, #1c1543 100%);
+  box-shadow:
+    inset 0 0 0 2px var(--card-accent),
+    0 9px 0 var(--color-pixel-shadow),
+    0 0 12px rgba(255, 216, 107, 0.2);
+}
+
+.card-slot {
+  font-family: var(--font-pixel);
+  font-size: 0.62rem;
+  color: var(--color-text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2px;
+}
+
+.active-badge {
+  font-size: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  color: var(--color-pixel-shadow);
+  background: var(--card-accent);
+  padding: 1px 3px;
+}
+
+.card-sprite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px 0;
+}
+
+.card-label-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.card-name {
+  font-family: var(--font-pixel);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-pixel-cream);
+}
+
+.roster-card[data-selected='true'] .card-name {
+  color: var(--color-pixel-yellow);
+}
+
+.card-archetype {
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+}
+
+.roster-card[data-selected='true'] .card-archetype {
+  color: var(--card-accent);
+}
+
+.card-pointer {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Tactile Arcade CTA & Secondary Actions
+   -------------------------------------------------------------------------- */
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.confirm-button {
+  font-family: var(--font-pixel);
+  font-size: clamp(1rem, 3vw, 1.18rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-pixel-shadow);
+  background: var(--color-pixel-yellow);
+  border: 3px solid var(--color-pixel-shadow);
+  box-shadow:
+    inset 0 3px 0 rgba(255, 255, 255, 0.6),
+    0 5px 0 var(--color-pixel-shadow);
+  padding: var(--space-3) var(--space-6);
+  cursor: pointer;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  transition:
+    transform 80ms ease-out,
+    box-shadow 80ms ease-out,
+    background 80ms ease-out;
+  user-select: none;
+}
+
+.confirm-button:hover {
+  background: #ffe38a;
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 3px 0 rgba(255, 255, 255, 0.7),
+    0 7px 0 var(--color-pixel-shadow);
+}
+
+.confirm-button:active {
+  transform: translateY(3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 2px 0 var(--color-pixel-shadow);
+}
+
+.confirm-button:focus-visible {
+  outline: 3px dashed var(--color-pixel-cream);
+  outline-offset: 4px;
+}
+
+.confirm-label {
+  display: inline-block;
+}
+
+.confirm-arrow {
+  font-size: 1.1rem;
+  animation: arrow-blink 1s steps(2, start) infinite;
+}
+
+@keyframes arrow-blink {
+  to { opacity: 0.35; }
+}
+
+.back-link {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.15s ease;
+}
+
+.back-link:hover {
+  color: var(--color-pixel-cream);
+  text-decoration: underline;
+}
+
+.back-link:focus-visible {
+  outline: 2px dashed var(--color-pixel-yellow);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive & Accessibility
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .route {
+    padding: clamp(8px, 1.5vh, 16px) var(--space-2);
+  }
+
+  .stage {
+    gap: 8px;
+  }
+
+  .showcase {
+    padding: var(--space-3) var(--space-2) var(--space-2);
+    gap: 8px;
+  }
+
+  .selector-grid {
+    gap: 6px;
+  }
+
+  .roster-card {
+    padding: 4px 2px 4px;
+    min-height: 84px;
+  }
+
+  .card-name {
+    font-size: 0.68rem;
+  }
+
+  .card-archetype {
+    display: none;
+  }
+
+  .confirm-button {
+    padding: 10px var(--space-4);
+  }
+}
+
+@media (max-width: 380px) {
+  .selector-grid {
+    gap: 4px;
+  }
+
+  .hero-desc {
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stars-bg,
+  .sparkle-1,
+  .sparkle-2,
+  .sparkle-3,
+  .motif-icon-wrap,
+  .hero-pet,
+  .confirm-arrow {
+    animation: none !important;
+  }
+}

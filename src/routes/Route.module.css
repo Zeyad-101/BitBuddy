@@ -1,0 +1,4 @@
+/* Legacy route styles placeholder - routes now use dedicated module CSS files */
+.route {
+  min-height: 100%;
+}

@@ -1,0 +1,173 @@
+import type { SpriteSet } from './palette';
+import { validateSprites } from './palette';
+
+/**
+ * Hamster — round body, tiny ears, big cheek pouches, golden band.
+ *
+ * Palette:
+ *   . transparent
+ *   C cream body       #f9e8c2
+ *   c body shadow      #d9b878
+ *   G golden band      #e8a848
+ *   e eye black        #1a1340
+ *   p pink (ears/nose) #ff7eb6
+ *   w white belly      #fff7e0
+ *   k cheek puff       #fff7e0
+ *   f food crumb       #e8a848
+ */
+const hamster: SpriteSet = {
+  labels: {
+    happy: 'round, twitchy',
+    'well-cared-for': 'energetic, fat cheeks',
+    hungry: 'looking for food',
+    sad: 'hunched, small',
+    tired: 'yawning tiny mouth',
+    sleeping: 'curled into ball',
+    eating: 'stuffing cheeks',
+    playing: 'spinning in place',
+  },
+  palette: {
+    '.': 'transparent',
+    C: '#f9e8c2',
+    c: '#d9b878',
+    G: '#e8a848',
+    e: '#1a1340',
+    p: '#ff7eb6',
+    w: '#fff7e0',
+    k: '#fff7e0',
+    f: '#e8a848',
+  },
+  frames: {
+    happy: [
+      '..............',
+      '..C..pp..pp..C',
+      '.cCp.CC..CCpCc',
+      '.CC..CC..CC..C',
+      '.CCCCCccccCCC.',
+      '.CCweCCcCCewC.',
+      '.CCkkCCCppkCC.',
+      '.CCkkCCwwkkCC.',
+      '.CCkCCwwwCCkC.',
+      '.CCCCwwwwwCCCC',
+      '.CCcCwwwwwCcC.',
+      '..CC.CwwwC.CC.',
+      '...CC.CC.CC...',
+      '....C....C....',
+    ],
+    'well-cared-for': [
+      '..............',
+      '..C..pp..pp..C',
+      '.cCp.CC..CCpCc',
+      '.CC..CC..CC..C',
+      '.CCCCCccccCCC.',
+      '.CCweCCcCCewC.',
+      '.CCkkCCCppkCC.',
+      '.CCkkCCwwkkCC.',
+      '.CCCfffCCfffCC',
+      '.CCfCCwwwCCfCC',
+      '.CCcCCwwwCCCcC',
+      '..CC..CC..CC..',
+      '...C..CC..C...',
+      '....C....C....',
+    ],
+    hungry: [
+      '..............',
+      '..C..pp..pp..C',
+      '.cCp.CC..CCpCc',
+      '.CC..CC..CC..C',
+      '.CCCCCccccCCC.',
+      '.CCwwCCcCCwwC.',
+      '.CCppCCCpppCC.',
+      '.CCCwwwwwwCC..',
+      '.CCwwwwwwwwCC.',
+      '.CCcwwwwwwccC.',
+      '..CC.cwwwc.CC.',
+      '...CC.CC.CC...',
+      '....CC..CC....',
+      '....C....C....',
+    ],
+    sad: [
+      '..............',
+      '..C..pp..pp..C',
+      '.cCp.CC..CCpCc',
+      '.CC..CC..CC..C',
+      '..CCCCccccCC..',
+      '..CCwwcwwCC...',
+      '.CCCppppppCCC.',
+      '.CCwwwwwwwwCC.',
+      '.CCwwwwwwwwCC.',
+      '.CCcwwwwwwcCC.',
+      '..CC.cwwwc.CC.',
+      '...CC.CC.CC...',
+      '....C....C....',
+      '..............',
+    ],
+    tired: [
+      '..............',
+      '..C..pp..pp..C',
+      '.cCp.CC..CCpCc',
+      '.CC..CC..CC..C',
+      '.CCCCCccccCCC.',
+      '.CCwwCCcCCwwC.',
+      '.CCppCCwwppCC.',
+      '.CCCwwwwwwCC..',
+      '.CCwwwwwwwwCC.',
+      '.CCcwwwwwwcCC.',
+      '..CC.cwwwc.CC.',
+      '...CC.CC.CC...',
+      '....C....C....',
+      '..............',
+    ],
+    sleeping: [
+      '..............',
+      '..............',
+      '.C..CC..CC..C.',
+      '.cCCCCCCCCCCc.',
+      '.CCwwwwwwwwwC.',
+      '.CCw......w.C.',
+      '.CCw..pp..w.C.',
+      '.CCw.pppp.wC..',
+      '.CCw.wwww.wC..',
+      '.CCcCwwwwcCC..',
+      '..CC..CC..CC..',
+      '...CC....CC...',
+      '....C....C....',
+      '..............',
+    ],
+    eating: [
+      '..............',
+      '..C..pp..pp..C',
+      '.cCp.CC..CCpCc',
+      '.CC..CC..CC..C',
+      '.CCCCCccccCCC.',
+      '.CCwwCCcCCwwC.',
+      '.CCppCCCCppCC.',
+      '.CCkfffCCkkCC.',
+      '.CCfffwwwfffCC',
+      '.CCfCCwwwCCfCC',
+      '.CCcCCwwwCCCcC',
+      '..CC..CC..CC..',
+      '...C..CC..C...',
+      '....C....C....',
+    ],
+    playing: [
+      '..............',
+      '..C..pp..pp..C',
+      '.cCp.CC..CCpCc',
+      '.CC..CC..CC..C',
+      '.CCCCCccccCCC.',
+      '.CCweCCcCCewC.',
+      '.CCkkCCCppkCC.',
+      '.CCCfffffCCCCC',
+      '.CCffwwwwffCCC',
+      '.CCcCCwwwCCCcC',
+      '..CC..CC..CC..',
+      '...C..CC..C...',
+      '....C....C....',
+      '..............',
+    ],
+  },
+};
+
+validateSprites(hamster);
+export default hamster;

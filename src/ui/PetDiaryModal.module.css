@@ -1,0 +1,238 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 6, 25, 0.78);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+  animation: fade-in 0.2s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.notebook {
+  background: #fcf8ea;
+  border: 4px solid #3d2212;
+  border-radius: 8px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(139, 69, 19, 0.15);
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  animation: notebook-pop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+}
+
+@keyframes notebook-pop {
+  from {
+    transform: scale(0.9) translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Spiral binding top/left effect */
+.spine {
+  height: 28px;
+  background: #2a180e;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 12px;
+  border-bottom: 2px solid #5a351c;
+}
+
+.ring {
+  width: 8px;
+  height: 18px;
+  background: linear-gradient(180deg, #d4d4d4 0%, #ffffff 40%, #888888 100%);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+  padding: 14px 20px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px dashed #d5c8ad;
+}
+
+.title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sticker {
+  font-size: 1.5rem;
+  animation: sticker-wiggle 3s infinite ease-in-out;
+}
+
+@keyframes sticker-wiggle {
+  0%, 100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+
+.title {
+  font-family: var(--font-pixel, monospace);
+  font-size: 1.1rem;
+  color: #3d2212;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  font-family: var(--font-pixel, monospace);
+  font-size: 0.7rem;
+  color: #7d6550;
+  margin-top: 2px;
+}
+
+.close-btn {
+  background: #e8d7be;
+  border: 2px solid #3d2212;
+  color: #3d2212;
+  font-family: var(--font-pixel, monospace);
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.1s ease, transform 0.1s ease;
+}
+
+.close-btn:hover {
+  background: #ff7582;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.close-btn:active {
+  transform: translateY(1px);
+}
+
+/* Lined notebook paper content */
+.content {
+  padding: 16px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  /* Lined paper pattern */
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 23px,
+    #e8decb 23px,
+    #e8decb 24px
+  );
+  background-color: #fcf8ea;
+}
+
+.entry-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid #c9bca2;
+  border-radius: 6px;
+  padding: 12px 14px;
+  position: relative;
+  box-shadow: 2px 3px 0 rgba(139, 69, 19, 0.1);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.entry-card:hover {
+  transform: translateY(-2px);
+  border-color: #a89476;
+}
+
+.entry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.entry-tag {
+  font-family: var(--font-pixel, monospace);
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #7b4421;
+  background: #f5e6cf;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid #d4c2a5;
+}
+
+.entry-mood {
+  font-size: 0.85rem;
+}
+
+.entry-text {
+  font-family: inherit;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #2b1a0e;
+  margin: 0;
+  font-style: italic;
+}
+
+.entry-footer {
+  margin-top: 6px;
+  font-family: var(--font-pixel, monospace);
+  font-size: 0.65rem;
+  color: #8c7662;
+  text-align: right;
+}
+
+/* Stats stamp footer */
+.stats-stamp {
+  margin-top: 4px;
+  padding: 10px;
+  border: 2px dashed #bfa88b;
+  border-radius: 6px;
+  background: #f5eedb;
+  display: flex;
+  justify-content: space-around;
+  font-family: var(--font-pixel, monospace);
+  font-size: 0.75rem;
+  color: #54351e;
+  text-align: center;
+}
+
+.stamp-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stamp-val {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #a84218;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notebook,
+  .backdrop,
+  .sticker {
+    animation: none !important;
+  }
+}
